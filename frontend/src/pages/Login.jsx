@@ -15,6 +15,12 @@ export default function Login() {
     try {
       const res = await loginUser(form);
 
+      if(!form.email || !form.password) {
+        alert("Please fill in all fields");
+        setLoading(false);
+        return;
+      }
+
       const token = res.data.token;
       const name = res.data.name;
       const email = res.data.email;
@@ -26,6 +32,7 @@ export default function Login() {
       dispatch({ type: "SET_USER", payload: { name, email } });
 
       navigate("/dashboard");
+
     } catch (err) {
       console.error(err);
       alert("Invalid email or password");
@@ -109,6 +116,7 @@ export default function Login() {
 
           {/* BUTTON */}
           <button
+          type="button"
             onClick={handleLogin}
             className="w-full bg-gradient-to-r from-blue-500 to-cyan-400 
               text-white py-3 rounded-lg 
