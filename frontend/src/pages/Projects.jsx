@@ -15,7 +15,7 @@ export default function Projects() {
 
   // ✅ FETCH PROJECTS
   useEffect(() => {
-    API.get("/projects")
+    API.get("/api/projects")
       .then((res) => {
         dispatch({ type: "SET_PROJECTS", payload: res.data });
       })
@@ -30,7 +30,7 @@ export default function Projects() {
     }
 
     try {
-      const res = await API.post("/projects", newProject);
+      const res = await API.post("/api/projects", newProject);
 
       dispatch({
         type: "SET_PROJECTS",
@@ -48,7 +48,7 @@ export default function Projects() {
 
   const handleDelete = async (id) => {
     try {
-      await API.delete(`/projects/${id}`);
+      await API.delete(`/api/projects/${id}`);
 
       dispatch({
         type: "SET_PROJECTS",

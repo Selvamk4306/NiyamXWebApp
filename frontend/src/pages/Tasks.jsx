@@ -27,7 +27,7 @@ export default function Tasks() {
 
   // FETCH
   useEffect(() => {
-    API.get("/task")
+    API.get("/api/task")
       .then((res) => {
         dispatch({ type: "SET_TASKS", payload: res.data });
       })
@@ -42,7 +42,7 @@ export default function Tasks() {
 
     try {
       const res = await API.post(
-        `/task?projectId=${selectedProjectId}`,
+        `/api/task?projectId=${selectedProjectId}`,
         {...newTask,
           deadline
         }
@@ -86,7 +86,7 @@ export default function Tasks() {
     const newStatus = result.destination.droppableId;
 
     try {
-      await API.put(`/task/${taskId}`, {
+      await API.put(`/api/task/${taskId}`, {
         status: newStatus
       });
 
@@ -105,7 +105,7 @@ export default function Tasks() {
 
   const handleDeleteTask = async (id) => {
     try {
-      await API.delete(`/task/${id}`);
+      await API.delete(`/api/task/${id}`);
 
       dispatch({
         type: "SET_TASKS",

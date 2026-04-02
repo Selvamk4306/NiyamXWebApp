@@ -51,13 +51,13 @@ export function AppProvider({ children }) {
       dispatch({ type: "SET_TOKEN", payload: token });
       dispatch({ type: "SET_USER", payload: JSON.parse(user) });
 
-      API.get("/projects")
+      API.get("/api/projects")
         .then((res) => {
           dispatch({ type: "SET_PROJECTS", payload: res.data });
         })
         .catch(console.error);
 
-      API.get("/task")
+      API.get("/api/task")
         .then((res) => {
           dispatch({ type: "SET_TASKS", payload: res.data });
         })
