@@ -7,7 +7,7 @@ const API = axios.create({
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
 
-  console.log("Token Snet : ", token);
+  console.log("Token Sent : ", token);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -16,12 +16,12 @@ API.interceptors.request.use((config) => {
 });
 
 // AUTH
-export const loginUser = (data) => API.post("/auth/login", data);
-export const registerUser = (data) => API.post("/auth/register", data);
+export const loginUser = (data) => API.post("/api/auth/login", data);
+export const registerUser = (data) => API.post("/api/auth/register", data);
 
 // PROJECT
-export const getProjects = () => API.get("/projects");
+export const getProjects = () => API.get("/api/projects");
 export const createProject = (project, workspaceId) =>
-  API.post(`/projects?workspaceId=${workspaceId}`, project);
+  API.post(`/api/projects?workspaceId=${workspaceId}`, project);
 
 export default API;

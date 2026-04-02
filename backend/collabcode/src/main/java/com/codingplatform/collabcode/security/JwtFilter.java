@@ -43,12 +43,6 @@ public class JwtFilter implements Filter {
             // 🔥 IGNORE TOKEN ERRORS (IMPORTANT)
             System.out.println("JWT Error: " + e.getMessage());
         }
-        String path = req.getRequestURI();
-
-        if(path.contains("/api/auth/login") || path.contains("/api/auth/register")){
-            chain.doFilter(request, response);
-            return;
-        }
 
         chain.doFilter(request, response);
     }
